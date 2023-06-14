@@ -20,7 +20,9 @@ import { onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
 import useGlobalStore from "@/stores/globalStore";
-
+definePageMeta({
+    middleware: ["auth"],
+});
 const name = "CarDetail";
 const store = useGlobalStore();
 const { getIsLoading: isloading, getCarDataById: carDataById } =
@@ -30,6 +32,9 @@ const route = useRoute();
 const carID = route.params.id;
 onMounted(async () => {
     await store.getCarDetailById(carID);
+});
+useHead({
+    titleTemplate: "Details|CarNation",
 });
 </script>
 

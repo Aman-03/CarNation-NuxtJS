@@ -4,8 +4,25 @@
     </NuxtLayout>
 </template>
 <script setup>
-// import { Modal } from "bootstrap";
+import { useStorage } from "@vueuse/core";
+import { storeToRefs } from "pinia";
+import useGlobalStore from "./stores/globalStore";
+const store = useGlobalStore();
+const { isLoggedIn } = storeToRefs(store);
+isLoggedIn.value = useStorage("isLoggedIn", false).value;
+console.log(isLoggedIn);
 </script>
+
 <style>
 @import "@/assets/style.css";
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+    transform: translateX(-10rem);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: all 0.5s ease-in-out;
+}
 </style>

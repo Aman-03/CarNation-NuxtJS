@@ -10,6 +10,12 @@
 import { onMounted, defineAsyncComponent } from "vue";
 import { storeToRefs } from "pinia";
 import useGlobalStore from "../stores/globalStore";
+useHead({
+    titleTemplate: "Home|CarNation",
+});
+definePageMeta({
+    middleware: ["auth"],
+});
 
 const store = useGlobalStore();
 const { getIsLoading: isloading } = storeToRefs(store);

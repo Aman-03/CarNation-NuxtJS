@@ -118,6 +118,10 @@
                 <button type="submit">Submit</button>
             </div>
         </VForm>
+        <p>
+            Already have an account?
+            <NuxtLink to="/login">Login </NuxtLink> here.
+        </p>
     </section>
 </template>
 
@@ -125,6 +129,13 @@
 import { reactive, computed, ref } from "vue";
 import useGlobalStore from "../stores/globalStore";
 import { useRouter } from "vue-router";
+
+useHead({
+    titleTemplate: "Register|CarNation",
+});
+definePageMeta({
+    middleware: ["guest"],
+});
 
 const store = useGlobalStore();
 const schema = {

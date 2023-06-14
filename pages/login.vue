@@ -29,6 +29,10 @@
                 <button type="submit">Submit</button>
             </div>
         </VForm>
+        <p>
+            Do not have an account?
+            <NuxtLink to="/register">Register</NuxtLink> here.
+        </p>
     </section>
 </template>
 
@@ -36,6 +40,13 @@
 import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import useGlobalStore from "../stores/globalStore";
+useHead({
+    titleTemplate: "Login|CarNation",
+});
+definePageMeta({
+    middleware: ["guest"],
+});
+
 const router = useRouter();
 const schema = {
     email: "required|email",

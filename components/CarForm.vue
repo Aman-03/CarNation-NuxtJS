@@ -1,116 +1,143 @@
 <template>
-    <div
-        class="modal fade"
-        id="staticBackdrop"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabindex="-1"
-        aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
-    >
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">
-                        {{
-                            modalType == "add"
-                                ? "Add the Car Details"
-                                : "Edit the Car Details"
-                        }}
-                    </h5>
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                        @click="resetCar"
-                    ></button>
-                </div>
-                <div class="modal-body">
-                    <VForm
-                        class="form"
-                        :validation-schema="schema"
-                        @submit="handleSubmit"
-                    >
-                        <div class="group">
-                            <VField
-                                name="name"
-                                placeholder=" "
-                                type="text"
-                                class="input"
-                                v-model="carDataToBeEdited.name"
-                            />
-                            <label for="name"> Car Name*</label>
-
-                            <ErrorMessage name="name" class="error_message" />
-                        </div>
-                        <div class="group">
-                            <VField
-                                name="price"
-                                placeholder=" "
-                                type="number"
-                                class="input"
-                                v-model="carDataToBeEdited.price"
-                            />
-                            <label for="price">Price*</label>
-                            <ErrorMessage name="price" class="error_message" />
-                        </div>
-
-                        <div class="group">
-                            <VField
-                                name="image"
-                                placeholder=" "
-                                type="text"
-                                class="input"
-                                v-model="carDataToBeEdited.image"
-                            />
-
-                            <label for="image">Image URL*</label>
-                            <ErrorMessage name="image" class="error_message" />
-                        </div>
-                        <div class="group">
-                            <vField
-                                name="details"
-                                :bails="false"
-                                v-model="carDataToBeEdited.details"
-                                v-slot="{ field, errors }"
-                            >
-                                <textarea
-                                    type="text"
-                                    placeholder=" "
-                                    id="comment"
-                                    class="textarea"
-                                    name="details"
-                                    rows="3"
-                                    v-bind="field"
-                                />
-                                <div
-                                    class="error_message"
-                                    v-for="err in errors"
-                                    :key="err"
-                                >
-                                    {{ err }}
+    <v-row class="add-button-container">
+        <v-dialog v-model="dialog" persistent width="600">
+            <v-card>
+                <v-card-text>
+                    <v-container>
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5
+                                        class="modal-title"
+                                        id="staticBackdropLabel"
+                                    >
+                                        {{
+                                            modalType == "add"
+                                                ? "Add the Car Details"
+                                                : "Edit the Car Details"
+                                        }}
+                                    </h5>
+                                    <button
+                                        type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close"
+                                        @click="resetCar"
+                                    ></button>
                                 </div>
-                            </vField>
-                            <label for="details">Car Details*</label>
+                                <div class="modal-body">
+                                    <VForm
+                                        class="form"
+                                        :validation-schema="schema"
+                                        @submit="handleSubmit"
+                                    >
+                                        <div class="group">
+                                            <VField
+                                                name="name"
+                                                placeholder=" "
+                                                type="text"
+                                                class="input"
+                                                v-model="carDataToBeEdited.name"
+                                            />
+                                            <label for="name"> Car Name*</label>
+
+                                            <ErrorMessage
+                                                name="name"
+                                                class="error_message"
+                                            />
+                                        </div>
+                                        <div class="group">
+                                            <VField
+                                                name="price"
+                                                placeholder=" "
+                                                type="number"
+                                                class="input"
+                                                v-model="
+                                                    carDataToBeEdited.price
+                                                "
+                                            />
+                                            <label for="price">Price*</label>
+                                            <ErrorMessage
+                                                name="price"
+                                                class="error_message"
+                                            />
+                                        </div>
+
+                                        <div class="group">
+                                            <VField
+                                                name="image"
+                                                placeholder=" "
+                                                type="text"
+                                                class="input"
+                                                v-model="
+                                                    carDataToBeEdited.image
+                                                "
+                                            />
+
+                                            <label for="image"
+                                                >Image URL*</label
+                                            >
+                                            <ErrorMessage
+                                                name="image"
+                                                class="error_message"
+                                            />
+                                        </div>
+                                        <div class="group">
+                                            <vField
+                                                name="details"
+                                                :bails="false"
+                                                v-model="
+                                                    carDataToBeEdited.details
+                                                "
+                                                v-slot="{ field, errors }"
+                                            >
+                                                <textarea
+                                                    type="text"
+                                                    placeholder=" "
+                                                    id="comment"
+                                                    class="textarea"
+                                                    name="details"
+                                                    rows="3"
+                                                    v-bind="field"
+                                                />
+                                                <div
+                                                    class="error_message"
+                                                    v-for="err in errors"
+                                                    :key="err"
+                                                >
+                                                    {{ err }}
+                                                </div>
+                                            </vField>
+                                            <label for="details"
+                                                >Car Details*</label
+                                            >
+                                        </div>
+                                        <small>*indicates required field</small>
+                                        <div class="modal-footer">
+                                            <button
+                                                type="reset"
+                                                ref="resetButton"
+                                                @click="dialog = false"
+                                            >
+                                                Cancel
+                                            </button>
+                                            <button type="submit">
+                                                {{
+                                                    modalType == "add"
+                                                        ? "Submit"
+                                                        : "Update"
+                                                }}
+                                            </button>
+                                        </div>
+                                    </VForm>
+                                </div>
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                            <button
-                                type="reset"
-                                ref="resetButton"
-                                data-bs-dismiss="modal"
-                            >
-                                Cancel
-                            </button>
-                            <button type="submit">
-                                {{ modalType == "add" ? "Submit" : "Update" }}
-                            </button>
-                        </div>
-                    </VForm>
-                </div>
-            </div>
-        </div>
-    </div>
+                    </v-container>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
+    </v-row>
 </template>
 
 <script setup>
@@ -130,8 +157,10 @@ const swalAddMsg = "Created Data";
 const swalEditMsg = "Edited Data";
 
 const store = useGlobalStore();
-const { modalType, carDataToBeEdited } = storeToRefs(store);
+const { modalType, openModal, carDataToBeEdited } = storeToRefs(store);
 const { getCarDetails, postCarDetails, putCarDetails } = store;
+
+const { openModal: dialog } = storeToRefs(store);
 
 const timer = ref(null);
 const resetButton = ref(null);
@@ -176,6 +205,22 @@ async function submitBtn() {
 </script>
 
 <style scoped>
+.add-button-container {
+    display: flex;
+    margin: 10px 50px;
+    flex-direction: row-reverse;
+}
+.add-button {
+    display: flex;
+    margin: 10px 50px;
+    flex-direction: row-reverse;
+    border: 1px solid white;
+    padding: 0.8em 1.7em;
+    border-radius: 0.3em;
+    background: #39484a;
+    color: white;
+    text-transform: initial;
+}
 .swal-img {
     width: 300px;
 }
@@ -253,6 +298,7 @@ async function submitBtn() {
     border: none;
     border-radius: 0.3em;
     padding: 10px;
+    margin: 0 5px;
     font-size: 16px;
     cursor: pointer;
     transition: all 0.3s ease;

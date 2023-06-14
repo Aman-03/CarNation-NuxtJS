@@ -9,8 +9,9 @@ const useGlobalStore = defineStore("global", {
             carDataById: {},
             isloading: false,
             modalType: "add",
+            openModal: false,
             userDetails: {},
-            isLoggedIn: useStorage("isLoggedIn", null) ? true : false,
+            isLoggedIn: false,
         };
     },
     getters: {
