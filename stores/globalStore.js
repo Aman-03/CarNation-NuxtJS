@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import axios from "axios";
-import { useStorage } from "@vueuse/core";
 const useGlobalStore = defineStore("global", {
     state: () => {
         return {
@@ -30,7 +29,7 @@ const useGlobalStore = defineStore("global", {
             this.isloading = true;
             try {
                 let responseData = await axios.get(
-                    `${import.meta.env.VITE_BASE_URL}/resource/cardata`
+                    `${import.meta.env.VITE_BASE_URL}/resource/cardata/`
                 );
                 this.carList = responseData.data.data;
                 this.isloading = false;
@@ -89,6 +88,7 @@ const useGlobalStore = defineStore("global", {
                 alert("Error in adding data !...");
             }
         },
+
         async deleteCarDetails(id) {
             try {
                 let responseData = await axios.delete(

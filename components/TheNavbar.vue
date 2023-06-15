@@ -8,7 +8,7 @@
                     @click="showNavbar = false"
                 >
                     <h1>{{ carShowRoomName }}</h1>
-                    <img src="@/assets/favicon-car.png" />
+                    <img src="@/favicon-car.png" />
                 </NuxtLink>
                 <p>{{ tagLine }}</p>
             </div>
@@ -69,7 +69,6 @@
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
 import useGlobalStore from "../stores/globalStore";
-const name = "Navbar";
 const carShowRoomName = "CarNation";
 const tagLine = "-Accelerate your journey with us.";
 const showNavbar = ref(false);

@@ -1,7 +1,4 @@
 export default defineNuxtConfig({
-    head: {
-        link: [{ rel: "icon", href: "/ favicon-car.png" }],
-    },
     devtools: { enabled: true },
     modules: ["@pinia/nuxt", "@vee-validate/nuxt", "@vueuse/nuxt"],
     veeValidate: {
@@ -21,5 +18,14 @@ export default defineNuxtConfig({
     ],
     app: {
         pageTransition: { name: "fade", mode: "out-in" },
+        head: {
+            link: [
+                {
+                    rel: "icon",
+                    type: "image/png",
+                    href: "/favicon-car.png",
+                },
+            ],
+        },
     },
 });

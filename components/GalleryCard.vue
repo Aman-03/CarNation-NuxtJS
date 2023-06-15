@@ -38,7 +38,7 @@
                             />
                             <img
                                 src="../assets/deleteIcon.png"
-                                @click="deleteCar(car.id, car.name)"
+                                @click="swalDeleteCar(car.id, car.name)"
                                 class="delete-icon"
                             />
                         </div>
@@ -53,6 +53,7 @@
 import useGlobalStore from "../stores/globalStore";
 import Swal from "sweetalert2";
 import { storeToRefs } from "pinia";
+import { swalDeleteCar } from "~/utils/swalAlerts";
 
 const emptyMessage = "No cars found!";
 const store = useGlobalStore();
@@ -62,7 +63,7 @@ const {
     openModal,
     getCarDetail: carList,
 } = storeToRefs(store);
-const { getCarDetails, deleteCarDetails } = store;
+
 function addCarData() {
     modalType.value = "add";
     openModal.value = true;
@@ -71,28 +72,6 @@ function editCarData(car) {
     openModal.value = true;
     modalType.value = "edit";
     carDataToBeEdited.value = { ...car };
-}
-function deleteCar(id, carName) {
-    Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#28a745",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-    }).then(async (result) => {
-        if (result.isConfirmed) {
-            const response = await deleteCarDetails(id);
-            if (response.status === 204) {
-                Swal.fire(
-                    `Deleted ${carName}!`,
-                    `Your Car has been deleted.`,
-                    "success"
-                );
-            }
-        }
-    });
 }
 </script>
 

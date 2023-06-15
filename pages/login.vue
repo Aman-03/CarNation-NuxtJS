@@ -1,38 +1,40 @@
 <template>
     <section class="login-form">
-        <h1 class="title-header">Login</h1>
-        <VForm class="form" :validation-schema="schema" @submit="loginBtn">
-            <div class="group">
-                <VField
-                    name="email"
-                    placeholder=" "
-                    type="email"
-                    class="input"
-                    v-model="loginDetails.email"
-                />
-                <label for="email"> Email* </label>
-                <ErrorMessage name="email" class="error_message" />
-            </div>
-            <div class="group">
-                <VField
-                    name="password"
-                    placeholder=" "
-                    type="password"
-                    class="input"
-                    v-model="loginDetails.password"
-                />
-                <label for="password">Password*</label>
-                <ErrorMessage name="password" class="error_message" />
-            </div>
-            <div class="form-btn">
-                <button type="reset" ref="resetBtn">Cancel</button>
-                <button type="submit">Submit</button>
-            </div>
-        </VForm>
-        <p>
-            Do not have an account?
-            <NuxtLink to="/register">Register</NuxtLink> here.
-        </p>
+        <PageLayout>
+            <h1 class="title-header">Login</h1>
+            <VForm class="form" :validation-schema="schema" @submit="loginBtn">
+                <div class="group">
+                    <VField
+                        name="email"
+                        placeholder=" "
+                        type="email"
+                        class="input"
+                        v-model="loginDetails.email"
+                    />
+                    <label for="email"> Email* </label>
+                    <ErrorMessage name="email" class="error_message" />
+                </div>
+                <div class="group">
+                    <VField
+                        name="password"
+                        placeholder=" "
+                        type="password"
+                        class="input"
+                        v-model="loginDetails.password"
+                    />
+                    <label for="password">Password*</label>
+                    <ErrorMessage name="password" class="error_message" />
+                </div>
+                <div class="form-btn">
+                    <button type="reset" ref="resetBtn">Cancel</button>
+                    <button type="submit">Submit</button>
+                </div>
+            </VForm>
+            <p>
+                Do not have an account?
+                <NuxtLink to="/register">Register</NuxtLink> here.
+            </p>
+        </PageLayout>
     </section>
 </template>
 

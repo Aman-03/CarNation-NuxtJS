@@ -10,7 +10,6 @@ import useGlobalStore from "./stores/globalStore";
 const store = useGlobalStore();
 const { isLoggedIn } = storeToRefs(store);
 isLoggedIn.value = useStorage("isLoggedIn", false).value;
-console.log(isLoggedIn);
 </script>
 
 <style>

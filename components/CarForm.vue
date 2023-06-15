@@ -144,7 +144,7 @@
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
 import useGlobalStore from "../stores/globalStore";
-import Swal from "sweetalert2";
+import { swalUpdates } from "~/utils/swalAlerts";
 
 const name = "CarForm";
 const schema = {
@@ -153,8 +153,6 @@ const schema = {
     image: "required|URL",
     details: "required|min:30|max:120",
 };
-const swalAddMsg = "Created Data";
-const swalEditMsg = "Edited Data";
 
 const store = useGlobalStore();
 const { modalType, openModal, carDataToBeEdited } = storeToRefs(store);
@@ -170,28 +168,12 @@ function resetCar() {
 }
 
 function handleSubmit() {
-    // using setTimeout just to avoid multiple submit calls
     clearTimeout(timer.value);
     timer.value = setTimeout(async () => {
         await submitBtn();
     }, 1000);
 }
-const swalAlert = () => {
-    resetCar();
-    Swal.fire({
-        title: `${modalType.value === "add" ? swalAddMsg : swalEditMsg}`,
-        html: `
-          <div>
-            <img src="${carDataToBeEdited.value.image}" alt="CarImage" class="swal-img" style="width:300px" />
-            <h3>Car: ${carDataToBeEdited.value.name}</h3>
-            <p>Price: ${carDataToBeEdited.value.price}</p>
-            <p>Details: ${carDataToBeEdited.value.details}</p>
-          </div>
-      `,
-        showCloseButton: false,
-        showConfirmButton: true,
-    });
-};
+
 async function submitBtn() {
     const responseData =
         modalType.value === "add"
@@ -199,7 +181,8 @@ async function submitBtn() {
             : await putCarDetails(carDataToBeEdited.value);
 
     if (responseData.status == 200 || responseData.status == 201) {
-        swalAlert();
+        resetCar();
+        swalUpdates();
     }
 }
 </script>

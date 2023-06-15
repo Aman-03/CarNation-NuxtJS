@@ -1,15 +1,16 @@
 <template>
-    <section class="loading-container">
+    <main class="loading-container">
         <Loading class="loader" v-if="isloading" />
         <GalleryCard />
         <CarForm />
-    </section>
+    </main>
 </template>
 
 <script setup>
 import { onMounted, defineAsyncComponent } from "vue";
 import { storeToRefs } from "pinia";
 import useGlobalStore from "../stores/globalStore";
+
 useHead({
     titleTemplate: "Home|CarNation",
 });
@@ -37,7 +38,6 @@ const GalleryCard = defineAsyncComponent(() =>
     position: relative;
     height: 30vh;
 }
-
 .loader {
     position: absolute;
     top: 90%;
