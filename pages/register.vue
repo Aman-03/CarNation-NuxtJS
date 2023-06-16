@@ -126,9 +126,7 @@
 </template>
 
 <script setup>
-import { reactive, computed, ref } from "vue";
 import useGlobalStore from "../stores/globalStore";
-import { useRouter } from "vue-router";
 
 useHead({
     titleTemplate: "Register|CarNation",
@@ -165,7 +163,6 @@ const schema = {
         }
     },
 };
-const router = useRouter();
 const registerDetails = reactive({});
 const maxDate = computed(() => {
     const today = new Date();

@@ -39,8 +39,6 @@
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
-import { useRouter } from "vue-router";
 import useGlobalStore from "../stores/globalStore";
 useHead({
     titleTemplate: "Login|CarNation",
@@ -49,7 +47,6 @@ definePageMeta({
     middleware: ["guest"],
 });
 
-const router = useRouter();
 const schema = {
     email: "required|email",
     password: "required",

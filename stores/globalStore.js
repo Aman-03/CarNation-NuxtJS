@@ -51,7 +51,7 @@ const useGlobalStore = defineStore("global", {
             } catch (e) {
                 this.isloading = false;
                 alert("Error in fetching data...");
-                window.history.back();
+                navigateTo("/");
             }
         },
         async putCarDetails(car) {

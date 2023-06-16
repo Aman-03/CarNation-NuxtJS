@@ -66,7 +66,6 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import { storeToRefs } from "pinia";
 import useGlobalStore from "../stores/globalStore";
 const carShowRoomName = "CarNation";

@@ -16,9 +16,7 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
 import { storeToRefs } from "pinia";
-import { useRoute } from "vue-router";
 import useGlobalStore from "@/stores/globalStore";
 
 const name = "CarDetail";
@@ -29,8 +27,13 @@ const route = useRoute();
 const carID = route.params.id;
 
 onMounted(async () => {
+    // let response =
     await store.getCarDetailById(carID);
+    // if (response.status !== 200) {
+    //     alert;
+    // }
 });
+
 useHead({
     titleTemplate: "Details|CarNation",
 });
