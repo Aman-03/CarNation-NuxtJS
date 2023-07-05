@@ -1,4 +1,9 @@
 export default defineNuxtConfig({
+    runtimeConfig: {
+        public: {
+            baseAPI: process.env.VITE_BASE_URL,
+        },
+    },
     devtools: { enabled: true },
     modules: ["@pinia/nuxt", "@vee-validate/nuxt", "@vueuse/nuxt"],
     veeValidate: {
@@ -23,7 +28,7 @@ export default defineNuxtConfig({
                 {
                     rel: "icon",
                     type: "image/png",
-                    href: "/favicon-car.png",
+                    href: "/public/favicon-car.png",
                 },
             ],
         },

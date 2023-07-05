@@ -8,7 +8,7 @@
                     @click="showNavbar = false"
                 >
                     <h1>{{ carShowRoomName }}</h1>
-                    <img src="@/favicon-car.png" />
+                    <img src="../assets/favicon-car.png" />
                 </NuxtLink>
                 <p>{{ tagLine }}</p>
             </div>

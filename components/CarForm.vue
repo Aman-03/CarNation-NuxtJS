@@ -116,7 +116,6 @@
                                         <div class="modal-footer">
                                             <button
                                                 type="reset"
-                                                ref="resetButton"
                                                 @click="dialog = false"
                                             >
                                                 Cancel
@@ -163,7 +162,7 @@ const timer = ref(null);
 const resetButton = ref(null);
 
 function resetCar() {
-    resetButton.value.click();
+    dialog.value = false;
 }
 
 function handleSubmit() {

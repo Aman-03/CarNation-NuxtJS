@@ -7,7 +7,12 @@
 import { useStorage } from "@vueuse/core";
 import { storeToRefs } from "pinia";
 import useGlobalStore from "./stores/globalStore";
+
+const {
+    public: { baseAPI },
+} = useRuntimeConfig();
 const store = useGlobalStore();
+store.baseAPI = baseAPI;
 const { isLoggedIn } = storeToRefs(store);
 isLoggedIn.value = useStorage("isLoggedIn", false).value;
 </script>

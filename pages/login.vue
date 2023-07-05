@@ -92,8 +92,13 @@ async function loginBtn() {
     flex-direction: column;
     margin: 50px;
 }
-
+p {
+    display: flex;
+    justify-content: center;
+}
 .title-header {
+    display: flex;
+    justify-content: center;
     color: #39484a;
 }
 

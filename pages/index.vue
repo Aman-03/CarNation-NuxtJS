@@ -1,11 +1,14 @@
 <template>
-    <main class="loading-container">
-        <Loading class="loader" v-if="isloading" />
-        <GalleryCard />
-        <CarForm />
-    </main>
+    <section>
+        <div class="loading-container" v-if="isloading">
+            <Loading class="loader" />
+        </div>
+        <div v-else>
+            <CarForm />
+            <GalleryCard />
+        </div>
+    </section>
 </template>
-
 <script setup>
 import { onMounted, defineAsyncComponent } from "vue";
 import { storeToRefs } from "pinia";
