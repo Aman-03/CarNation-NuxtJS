@@ -1,6 +1,7 @@
-# CarNation Nuxt
+## CarNation NuxtJs:
+CarNation is an application that allows users to access information about car models, features, pricing, and availability.
 
-[CarNation](https://carnation-nuxt.netlify.app)
+[CarNation NuxtJs](https://carnation-nuxt.netlify.app)
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
